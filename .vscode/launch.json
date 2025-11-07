@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PaofresquimApplication<paofresquim>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.paofresquim.PaofresquimApplication",
+            "projectName": "paofresquim",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
