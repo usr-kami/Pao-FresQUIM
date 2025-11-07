@@ -1,3 +1,21 @@
 spring:
   application:
     name: paofresquim
+  datasource:
+    url: jdbc:sqlite:${user.dir}/backend/paofresquim/src/main/resources/database/paofresquim.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      "[hibernate.format_sql]": true
+  sql:
+    init:
+      mode: never
+
+logging:
+  level:
+    "[org.hibernate.SQL]": DEBUG
+    "[org.springframework.jdbc.core]": TRACE
