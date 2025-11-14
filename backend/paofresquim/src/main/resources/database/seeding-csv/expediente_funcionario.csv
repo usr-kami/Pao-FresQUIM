@@ -1,0 +1,11 @@
+id_expediente,id_funcionario,dia_semana,hora_entrada,hora_saida,turno
+1,1,segunda,04:00,12:00,manha
+2,1,terca,04:00,12:00,manha
+3,1,quarta,04:00,12:00,manha
+4,1,quinta,04:00,12:00,manha
+5,1,sexta,04:00,12:00,manha
+6,2,segunda,08:00,17:00,integral
+7,2,terca,08:00,17:00,integral
+8,2,quarta,08:00,17:00,integral
+9,2,quinta,08:00,17:00,integral
+10,2,sexta,08:00,17:00,integral

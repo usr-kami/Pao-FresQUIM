@@ -1,0 +1,3 @@
+id_ferias,id_funcionario,data_inicio,data_fim,dias_solicitados,status,data_solicitacao,observacoes
+1,1,2024-02-01,2024-02-15,15,aprovado,2024-01-10 10:00:00,Férias programadas
+2,2,2024-03-01,2024-03-10,10,solicitado,2024-01-15 14:30:00,

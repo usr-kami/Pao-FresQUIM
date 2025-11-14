@@ -15,3 +15,6 @@
 .import seeding-csv/produtos.csv produtos
 .import seeding-csv/estoque_ingredientes.csv estoque_ingredientes
 .import seeding-csv/vendas.csv vendas
+.import seeding-csv/funcionarios.csv funcionarios
+.import seeding-csv/ferias_funcionarios.csv ferias_funcionarios
+.import seeding-csv/expediente_funcionario.csv expediente_funcionario
