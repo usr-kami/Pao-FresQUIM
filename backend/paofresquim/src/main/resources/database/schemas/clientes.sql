@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS clientes (
-    id_cliente INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT NOT NULL,
-    email TEXT,
-    telefone TEXT,
-    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
-);
