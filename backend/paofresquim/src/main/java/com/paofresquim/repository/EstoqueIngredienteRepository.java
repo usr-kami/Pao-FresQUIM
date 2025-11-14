@@ -13,6 +13,8 @@ public interface EstoqueIngredienteRepository extends JpaRepository<EstoqueIngre
     
     Optional<EstoqueIngrediente> findByNomeIngrediente(String nomeIngrediente);
     
+    List<EstoqueIngrediente> findByNomeIngredienteContainingIgnoreCase(String nome);
+    
     List<EstoqueIngrediente> findByQuantidadeEstoqueLessThanEqual(Double quantidade);
     
     @Query("SELECT e FROM EstoqueIngrediente e WHERE e.quantidadeEstoque <= e.estoqueMinimo")
