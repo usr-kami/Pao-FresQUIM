@@ -165,6 +165,11 @@ public class VendaService {
                     venda.setFormaPagamento(vendaRequest.getFormaPagamento());
                     venda.setStatusPagamento(vendaRequest.getStatusPagamento());
                     
+                    if ("fiado".equals(vendaRequest.getFormaPagamento()) && "pendente".equals(vendaRequest.getStatusPagamento())) {
+                        venda.setDataVencimento(LocalDateTime.now().plusDays(7));
+                    } else if ("pago".equals(vendaRequest.getStatusPagamento()) || !"fiado".equals(vendaRequest.getFormaPagamento())) {
+                        venda.setDataVencimento(null);
+                    }
                     
                     venda.calcularTotal();
 
