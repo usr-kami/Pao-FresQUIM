@@ -1,3 +1,8 @@
 id_ferias,id_funcionario,data_inicio,data_fim,dias_solicitados,status,data_solicitacao,observacoes
 1,1,2024-02-01,2024-02-15,15,aprovado,2024-01-10 10:00:00,Férias programadas
 2,2,2024-03-01,2024-03-10,10,solicitado,2024-01-15 14:30:00,
+3,4,2024-04-15,2024-04-30,16,aprovado,2024-02-10 09:15:00,Primeiras férias
+4,5,2024-05-10,2024-05-20,11,solicitado,2024-02-12 16:45:00,
+5,6,2024-06-01,2024-06-14,14,aprovado,2024-02-14 11:20:00,Férias em família
+6,8,2024-07-05,2024-07-25,21,cancelado,2024-02-18 14:00:00,Remarcar para setembro
+7,3,2024-08-12,2024-08-23,12,solicitado,2024-02-20 10:30:00,
