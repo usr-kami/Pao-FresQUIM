@@ -7,20 +7,31 @@ spring:
   jpa:
     database-platform: org.hibernate.community.dialect.SQLiteDialect
     hibernate:
-      ddl-auto: create  # update
+      ddl-auto: update
     show-sql: true
     properties:
       "[hibernate.format_sql]": true
-      "[hibernate.generate_statistics]": false
+      "[hibernate.generate_statistics]": true
+      "[hibernate.type]": trace
+    defer-datasource-initialization: true
   sql:
     init:
-      mode: never
+      mode: always
 
 logging:
   level:
     "[com.paofresquim]": DEBUG
     "[org.hibernate.SQL]": DEBUG
+    "[org.hibernate.orm.jdbc.bind]": TRACE
+    "[org.hibernate.orm.jdbc.extract]": TRACE
     "[org.springframework.jdbc.core]": TRACE
+    "[org.springframework.jdbc.datasource.init]": DEBUG
+    "[org.springframework.orm.jpa]": DEBUG
+    "[org.springframework.transaction]": DEBUG
+    "[org.hibernate.engine.transaction]": DEBUG
+    
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
 
 server:
   port: 8080
