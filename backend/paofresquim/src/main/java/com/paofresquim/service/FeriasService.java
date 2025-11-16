@@ -4,6 +4,10 @@ import com.paofresquim.dto.FeriasRequestDTO;
 import com.paofresquim.dto.FeriasResponseDTO;
 import com.paofresquim.entity.FeriasFuncionario;
 import com.paofresquim.entity.Funcionario;
+import com.paofresquim.exception.EntidadeNaoEncontradaException;
+import com.paofresquim.exception.ValidacaoException;
+import com.paofresquim.exception.ConflitoDadosException;
+import com.paofresquim.exception.RegraNegocioException;
 import com.paofresquim.repository.FeriasRepository;
 import com.paofresquim.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class FeriasService {
+public class FeriasService extends BaseService<FeriasFuncionario, Long, FeriasRequestDTO, FeriasResponseDTO> {
 
     @Autowired
     private FeriasRepository feriasRepository;
@@ -24,165 +28,13 @@ public class FeriasService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    @Transactional(readOnly = true)
-    public List<FeriasResponseDTO> listarTodas() {
-        return feriasRepository.findAll()
-                .stream()
-                .map(this::toResponseDTO)
-                .collect(Collectors.toList());
+    @Override
+    protected FeriasRepository getRepository() {
+        return feriasRepository;
     }
 
-    @Transactional(readOnly = true)
-    public Optional<FeriasResponseDTO> buscarPorId(Long id) {
-        return feriasRepository.findById(id)
-                .map(this::toResponseDTO);
-    }
-
-    @Transactional(readOnly = true)
-    public List<FeriasResponseDTO> buscarPorFuncionario(Long idFuncionario) {
-        return feriasRepository.findByFuncionarioIdFuncionario(idFuncionario)
-                .stream()
-                .map(this::toResponseDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Transactional(readOnly = true)
-    public List<FeriasResponseDTO> buscarPorStatus(String status) {
-        return feriasRepository.findByStatus(status)
-                .stream()
-                .map(this::toResponseDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Transactional
-    public FeriasResponseDTO solicitarFerias(FeriasRequestDTO feriasRequest) {
-        
-        Funcionario funcionario = funcionarioRepository.findById(feriasRequest.getIdFuncionario())
-                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado: " + feriasRequest.getIdFuncionario()));
-
-        validarDatasFerias(feriasRequest.getDataInicio(), feriasRequest.getDataFim());
-
-        verificarConflitoFerias(funcionario.getIdFuncionario(), feriasRequest.getDataInicio(), feriasRequest.getDataFim());
-
-        FeriasFuncionario ferias = new FeriasFuncionario();
-        ferias.setFuncionario(funcionario);
-        ferias.setDataInicio(feriasRequest.getDataInicio());
-        ferias.setDataFim(feriasRequest.getDataFim());
-        ferias.setObservacoes(feriasRequest.getObservacoes());
-        ferias.setStatus("solicitado");
-
-        FeriasFuncionario feriasSalva = feriasRepository.save(ferias);
-        return toResponseDTO(feriasSalva);
-    }
-
-    @Transactional
-    public Optional<FeriasResponseDTO> atualizarStatus(Long id, String novoStatus) {
-        return feriasRepository.findById(id)
-                .map(ferias -> {
-                    if (!isStatusValido(novoStatus)) {
-                        throw new RuntimeException("Status inválido: " + novoStatus + 
-                                ". Status válidos: solicitado, aprovado, em_andamento, concluido, cancelado");
-                    }
-
-                    if ("aprovado".equals(novoStatus) && !"solicitado".equals(ferias.getStatus())) {
-                        throw new RuntimeException("Só é possível aprovar férias com status 'solicitado'");
-                    }
-
-                    if ("em_andamento".equals(novoStatus) && !"aprovado".equals(ferias.getStatus())) {
-                        throw new RuntimeException("Só é possível iniciar férias com status 'aprovado'");
-                    }
-
-                    ferias.setStatus(novoStatus);
-                    FeriasFuncionario feriasAtualizada = feriasRepository.save(ferias);
-                    return toResponseDTO(feriasAtualizada);
-                });
-    }
-
-    @Transactional
-    public Optional<FeriasResponseDTO> atualizarFerias(Long id, FeriasRequestDTO feriasRequest) {
-        return feriasRepository.findById(id)
-                .map(ferias -> {
-                    if (!"solicitado".equals(ferias.getStatus())) {
-                        throw new RuntimeException("Só é possível atualizar férias com status 'solicitado'");
-                    }
-
-                    Funcionario funcionario = funcionarioRepository.findById(feriasRequest.getIdFuncionario())
-                            .orElseThrow(() -> new RuntimeException("Funcionário não encontrado: " + feriasRequest.getIdFuncionario()));
-
-                    validarDatasFerias(feriasRequest.getDataInicio(), feriasRequest.getDataFim());
-                    
-                    List<FeriasFuncionario> conflitos = feriasRepository
-                            .findByFuncionarioIdFuncionarioAndDataInicioLessThanEqualAndDataFimGreaterThanEqual(
-                                    funcionario.getIdFuncionario(), feriasRequest.getDataFim(), feriasRequest.getDataInicio());
-                    
-                    conflitos = conflitos.stream()
-                            .filter(f -> !f.getIdFerias().equals(id))
-                            .collect(Collectors.toList());
-                    
-                    if (!conflitos.isEmpty()) {
-                        throw new RuntimeException("Conflito de datas com outras férias já cadastradas");
-                    }
-
-                    ferias.setFuncionario(funcionario);
-                    ferias.setDataInicio(feriasRequest.getDataInicio());
-                    ferias.setDataFim(feriasRequest.getDataFim());
-                    ferias.setObservacoes(feriasRequest.getObservacoes());
-
-                    FeriasFuncionario feriasAtualizada = feriasRepository.save(ferias);
-                    return toResponseDTO(feriasAtualizada);
-                });
-    }
-
-    @Transactional
-    public boolean deletarFerias(Long id) {
-        if (feriasRepository.existsById(id)) {
-            FeriasFuncionario ferias = feriasRepository.findById(id).orElseThrow();
-            if (!"solicitado".equals(ferias.getStatus())) {
-                throw new RuntimeException("Só é possível deletar férias com status 'solicitado'");
-            }
-            feriasRepository.deleteById(id);
-            return true;
-        }
-        return false;
-    }
-
-    private void validarDatasFerias(LocalDate dataInicio, LocalDate dataFim) {
-        if (dataInicio.isBefore(LocalDate.now())) {
-            throw new RuntimeException("Data de início não pode ser no passado");
-        }
-
-        if (dataFim.isBefore(dataInicio)) {
-            throw new RuntimeException("Data de fim não pode ser anterior à data de início");
-        }
-
-        long dias = java.time.temporal.ChronoUnit.DAYS.between(dataInicio, dataFim) + 1;
-        if (dias < 5) {
-            throw new RuntimeException("Período mínimo de férias é 5 dias");
-        }
-
-        if (dias > 30) {
-            throw new RuntimeException("Período máximo de férias é 30 dias");
-        }
-    }
-
-    private void verificarConflitoFerias(Long idFuncionario, LocalDate dataInicio, LocalDate dataFim) {
-        List<FeriasFuncionario> conflitos = feriasRepository
-                .findByFuncionarioIdFuncionarioAndDataInicioLessThanEqualAndDataFimGreaterThanEqual(
-                        idFuncionario, dataFim, dataInicio);
-        
-        if (!conflitos.isEmpty()) {
-            throw new RuntimeException("Conflito de datas com outras férias já cadastradas");
-        }
-    }
-
-    private boolean isStatusValido(String status) {
-        return status != null && 
-               (status.equals("solicitado") || status.equals("aprovado") || 
-                status.equals("em_andamento") || status.equals("concluido") || 
-                status.equals("cancelado"));
-    }
-
-    private FeriasResponseDTO toResponseDTO(FeriasFuncionario ferias) {
+    @Override
+    protected FeriasResponseDTO toResponseDTO(FeriasFuncionario ferias) {
         return new FeriasResponseDTO(
             ferias.getIdFerias(),
             ferias.getFuncionario().getIdFuncionario(),
@@ -195,5 +47,146 @@ public class FeriasService {
             ferias.getDataSolicitacao(),
             ferias.getObservacoes()
         );
+    }
+
+    @Override
+    protected FeriasFuncionario toEntity(FeriasRequestDTO requestDTO) {
+        Funcionario funcionario = funcionarioRepository.findById(requestDTO.idFuncionario())
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("Funcionário", requestDTO.idFuncionario()));
+
+        validarDatasFerias(requestDTO.dataInicio(), requestDTO.dataFim());
+        verificarConflitoFerias(null, requestDTO.idFuncionario(), requestDTO.dataInicio(), requestDTO.dataFim());
+
+        FeriasFuncionario ferias = new FeriasFuncionario();
+        ferias.setFuncionario(funcionario);
+        ferias.setDataInicio(requestDTO.dataInicio());
+        ferias.setDataFim(requestDTO.dataFim());
+        ferias.setObservacoes(requestDTO.observacoes());
+        ferias.setStatus("solicitado");
+
+        return ferias;
+    }
+
+    @Override
+    protected void updateEntityFromRequest(FeriasFuncionario ferias, FeriasRequestDTO requestDTO) {
+        if (!"solicitado".equals(ferias.getStatus())) {
+            throw new RegraNegocioException("Só é possível atualizar férias com status 'solicitado'");
+        }
+
+        Funcionario funcionario = funcionarioRepository.findById(requestDTO.idFuncionario())
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("Funcionário", requestDTO.idFuncionario()));
+
+        validarDatasFerias(requestDTO.dataInicio(), requestDTO.dataFim());
+        verificarConflitoFerias(ferias.getIdFerias(), requestDTO.idFuncionario(), requestDTO.dataInicio(), requestDTO.dataFim());
+
+        ferias.setFuncionario(funcionario);
+        ferias.setDataInicio(requestDTO.dataInicio());
+        ferias.setDataFim(requestDTO.dataFim());
+        ferias.setObservacoes(requestDTO.observacoes());
+    }
+
+    @Override
+    protected Long getIdFromEntity(FeriasFuncionario entity) {
+        return entity.getIdFerias();
+    }
+
+    @Transactional(readOnly = true)
+    public List<FeriasResponseDTO> buscarPorFuncionario(Long idFuncionario) {
+        logger.debug("Buscando férias por funcionário ID: {}", idFuncionario);
+        return feriasRepository.findByFuncionarioIdFuncionario(idFuncionario)
+                .stream()
+                .map(this::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<FeriasResponseDTO> buscarPorStatus(String status) {
+        logger.debug("Buscando férias por status: {}", status);
+        return feriasRepository.findByStatus(status)
+                .stream()
+                .map(this::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public Optional<FeriasResponseDTO> atualizarStatus(Long id, String novoStatus) {
+        logger.info("Atualizando status das férias ID: {} para {}", id, novoStatus);
+        return feriasRepository.findById(id)
+                .map(ferias -> {
+                    if (!isStatusValido(novoStatus)) {
+                        throw new ValidacaoException("Status inválido: " + novoStatus + 
+                                ". Status válidos: solicitado, aprovado, em_andamento, concluido, cancelado");
+                    }
+
+                    if ("aprovado".equals(novoStatus) && !"solicitado".equals(ferias.getStatus())) {
+                        throw new RegraNegocioException("Só é possível aprovar férias com status 'solicitado'");
+                    }
+
+                    if ("em_andamento".equals(novoStatus) && !"aprovado".equals(ferias.getStatus())) {
+                        throw new RegraNegocioException("Só é possível iniciar férias com status 'aprovado'");
+                    }
+
+                    ferias.setStatus(novoStatus);
+                    FeriasFuncionario feriasAtualizada = feriasRepository.save(ferias);
+                    logger.info("Status das férias ID: {} atualizado para: {}", id, novoStatus);
+                    return toResponseDTO(feriasAtualizada);
+                });
+    }
+
+    @Override
+    @Transactional
+    public boolean deletar(Long id) {
+        logger.info("Tentando deletar férias ID: {}", id);
+        if (feriasRepository.existsById(id)) {
+            FeriasFuncionario ferias = feriasRepository.findById(id).orElseThrow();
+            if (!"solicitado".equals(ferias.getStatus())) {
+                throw new RegraNegocioException("Só é possível deletar férias com status 'solicitado'");
+            }
+            feriasRepository.deleteById(id);
+            logger.info("Férias deletadas com ID: {}", id);
+            return true;
+        }
+        logger.warn("Férias não encontradas para deleção ID: {}", id);
+        return false;
+    }
+
+    private void validarDatasFerias(LocalDate dataInicio, LocalDate dataFim) {
+        if (dataInicio.isBefore(LocalDate.now())) {
+            throw new ValidacaoException("Data de início não pode ser no passado");
+        }
+
+        if (dataFim.isBefore(dataInicio)) {
+            throw new ValidacaoException("Data de fim não pode ser anterior à data de início");
+        }
+
+        long dias = java.time.temporal.ChronoUnit.DAYS.between(dataInicio, dataFim) + 1;
+        if (dias < 5) {
+            throw new ValidacaoException("Período mínimo de férias é 5 dias");
+        }
+
+        if (dias > 30) {
+            throw new ValidacaoException("Período máximo de férias é 30 dias");
+        }
+    }
+
+    private void verificarConflitoFerias(Long idFerias, Long idFuncionario, LocalDate dataInicio, LocalDate dataFim) {
+        List<FeriasFuncionario> conflitos = feriasRepository
+                .findByFuncionarioIdFuncionarioAndDataInicioLessThanEqualAndDataFimGreaterThanEqual(
+                        idFuncionario, dataFim, dataInicio);
+        
+        conflitos = conflitos.stream()
+                .filter(f -> !f.getIdFerias().equals(idFerias))
+                .collect(Collectors.toList());
+        
+        if (!conflitos.isEmpty()) {
+            throw new ConflitoDadosException("Conflito de datas com outras férias já cadastradas");
+        }
+    }
+
+    private boolean isStatusValido(String status) {
+        return status != null && 
+               (status.equals("solicitado") || status.equals("aprovado") || 
+                status.equals("em_andamento") || status.equals("concluido") || 
+                status.equals("cancelado"));
     }
 }

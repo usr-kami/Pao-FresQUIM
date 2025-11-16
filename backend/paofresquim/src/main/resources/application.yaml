@@ -8,11 +8,10 @@ spring:
     database-platform: org.hibernate.community.dialect.SQLiteDialect
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       "[hibernate.format_sql]": true
-      "[hibernate.generate_statistics]": true
-      "[hibernate.type]": trace
+      "[hibernate.generate_statistics]": false
     defer-datasource-initialization: true
   sql:
     init:
@@ -20,18 +19,28 @@ spring:
 
 logging:
   level:
-    "[com.paofresquim]": DEBUG
-    "[org.hibernate.SQL]": DEBUG
-    "[org.hibernate.orm.jdbc.bind]": TRACE
-    "[org.hibernate.orm.jdbc.extract]": TRACE
-    "[org.springframework.jdbc.core]": TRACE
-    "[org.springframework.jdbc.datasource.init]": DEBUG
-    "[org.springframework.orm.jpa]": DEBUG
-    "[org.springframework.transaction]": DEBUG
-    "[org.hibernate.engine.transaction]": DEBUG
+    "[com.paofresquim]": INFO
+    "[com.paofresquim.controller]": INFO
+    "[com.paofresquim.service]": INFO
+    "[com.paofresquim.repository]": DEBUG
     
+    "[org.springframework.web]": INFO
+    "[org.springframework.transaction]": INFO
+    "[org.springframework.orm.jpa]": INFO
+    
+    "[org.hibernate.SQL]": DEBUG
+    "[org.hibernate.orm.jdbc.bind]": INFO
+    "[org.hibernate.stat]": INFO
+  
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%X{traceId:-no-trace}] %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{40} - [%X{traceId:-no-trace}] %msg%n"
+  
+  file:
+    name: logs/paofresquim.log
+    max-size: 10MB
+    max-history: 7
+    total-size-cap: 100MB
 
 server:
   port: 8080

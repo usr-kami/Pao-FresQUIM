@@ -1,0 +1,40 @@
+2025-11-15 16:11:55.936 [main] INFO  com.paofresquim.PaofresquimApplication - [no-trace] Starting PaofresquimApplication using Java 25.0.1 with PID 14120 (C:\Users\koi\projects\Pao-FresQUIM\backend\paofresquim\target\classes started by koi in C:\Users\koi\projects\Pao-FresQUIM)
+2025-11-15 16:11:55.939 [main] INFO  com.paofresquim.PaofresquimApplication - [no-trace] No active profile set, falling back to 1 default profile: "default"
+2025-11-15 16:11:56.894 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - [no-trace] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-15 16:11:56.974 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - [no-trace] Finished Spring Data repository scanning in 69 ms. Found 7 JPA repository interfaces.
+2025-11-15 16:11:57.539 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - [no-trace] Tomcat initialized with port 8080 (http)
+2025-11-15 16:11:57.553 [main] INFO  o.apache.catalina.core.StandardService - [no-trace] Starting service [Tomcat]
+2025-11-15 16:11:57.554 [main] INFO  org.apache.catalina.core.StandardEngine - [no-trace] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-15 16:11:57.604 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - [no-trace] Initializing Spring embedded WebApplicationContext
+2025-11-15 16:11:57.605 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - [no-trace] Root WebApplicationContext: initialization completed in 1603 ms
+2025-11-15 16:11:57.772 [main] INFO  o.hibernate.jpa.internal.util.LogHelper - [no-trace] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-15 16:11:57.823 [main] INFO  org.hibernate.Version - [no-trace] HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-15 16:11:57.850 [main] INFO  o.h.c.internal.RegionFactoryInitiator - [no-trace] HHH000026: Second-level cache disabled
+2025-11-15 16:11:58.097 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - [no-trace] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-15 16:11:58.131 [main] INFO  com.zaxxer.hikari.HikariDataSource - [no-trace] HikariPool-1 - Starting...
+2025-11-15 16:11:58.493 [main] INFO  com.zaxxer.hikari.pool.HikariPool - [no-trace] HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@610fbe1c
+2025-11-15 16:11:58.495 [main] INFO  com.zaxxer.hikari.HikariDataSource - [no-trace] HikariPool-1 - Start completed.
+2025-11-15 16:11:58.541 [main] INFO  org.hibernate.orm.connections.pooling - [no-trace] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 3.45.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-15 16:11:59.454 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - [no-trace] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-15 16:11:59.501 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - [no-trace] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-15 16:11:59.889 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - [no-trace] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-15 16:12:00.336 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - [no-trace] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-15 16:12:00.752 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - [no-trace] Tomcat started on port 8080 (http) with context path '/'
+2025-11-15 16:12:00.762 [main] INFO  com.paofresquim.PaofresquimApplication - [no-trace] Started PaofresquimApplication in 5.276 seconds (process running for 5.583)
+2025-11-15 16:12:00.777 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] === INICIANDO CARGA DE DADOS INICIAIS ===
+2025-11-15 16:12:00.783 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela clientes: 10 registros
+2025-11-15 16:12:00.784 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela produtos: 15 registros
+2025-11-15 16:12:00.784 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela estoque_ingredientes: 15 registros
+2025-11-15 16:12:00.785 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela funcionarios: 8 registros
+2025-11-15 16:12:00.785 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela vendas: 20 registros
+2025-11-15 16:12:00.786 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela expediente_funcionario: 40 registros
+2025-11-15 16:12:00.793 [main] WARN  com.paofresquim.config.DataLoader - [no-trace] Tabela ferias_funcionario não encontrada ou vazia: StatementCallback; uncategorized SQLException for SQL [SELECT COUNT(*) FROM ferias_funcionario]; SQL state [null]; error code [1]; [SQLITE_ERROR] SQL error or missing database (no such table: ferias_funcionario)
+2025-11-15 16:12:00.794 [main] ERROR com.paofresquim.config.DataLoader - [no-trace] Arquivo CSV não encontrado: database/seeding-csv/ferias_funcionario.csv
+2025-11-15 16:12:00.794 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] === CARGA DE DADOS CONCLUÍDA COM SUCESSO ===
