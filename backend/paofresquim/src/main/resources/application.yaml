@@ -2,7 +2,7 @@ spring:
   application:
     name: paofresquim
   datasource:
-    url: jdbc:sqlite:${user.dir}\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db
+    url: jdbc:sqlite:${user.dir}\backend\paofresquim\src\main\resources\database\paofresquim.db
     driver-class-name: org.sqlite.JDBC
   jpa:
     database-platform: org.hibernate.community.dialect.SQLiteDialect

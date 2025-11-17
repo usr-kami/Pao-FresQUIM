@@ -38,3 +38,209 @@
 2025-11-15 16:12:00.793 [main] WARN  com.paofresquim.config.DataLoader - [no-trace] Tabela ferias_funcionario não encontrada ou vazia: StatementCallback; uncategorized SQLException for SQL [SELECT COUNT(*) FROM ferias_funcionario]; SQL state [null]; error code [1]; [SQLITE_ERROR] SQL error or missing database (no such table: ferias_funcionario)
 2025-11-15 16:12:00.794 [main] ERROR com.paofresquim.config.DataLoader - [no-trace] Arquivo CSV não encontrado: database/seeding-csv/ferias_funcionario.csv
 2025-11-15 16:12:00.794 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] === CARGA DE DADOS CONCLUÍDA COM SUCESSO ===
+2025-11-16 23:08:27.759 [main] INFO  com.paofresquim.PaofresquimApplication - [no-trace] Starting PaofresquimApplication using Java 25.0.1 with PID 21904 (C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\backend\paofresquim\target\classes started by koi in C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM)
+2025-11-16 23:08:27.761 [main] INFO  com.paofresquim.PaofresquimApplication - [no-trace] No active profile set, falling back to 1 default profile: "default"
+2025-11-16 23:08:29.036 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - [no-trace] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-16 23:08:29.121 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - [no-trace] Finished Spring Data repository scanning in 67 ms. Found 7 JPA repository interfaces.
+2025-11-16 23:08:29.571 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - [no-trace] Tomcat initialized with port 8080 (http)
+2025-11-16 23:08:29.589 [main] INFO  o.apache.catalina.core.StandardService - [no-trace] Starting service [Tomcat]
+2025-11-16 23:08:29.590 [main] INFO  org.apache.catalina.core.StandardEngine - [no-trace] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-16 23:08:29.643 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - [no-trace] Initializing Spring embedded WebApplicationContext
+2025-11-16 23:08:29.644 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - [no-trace] Root WebApplicationContext: initialization completed in 1830 ms
+2025-11-16 23:08:29.788 [main] INFO  o.hibernate.jpa.internal.util.LogHelper - [no-trace] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-16 23:08:29.839 [main] INFO  org.hibernate.Version - [no-trace] HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-16 23:08:29.874 [main] INFO  o.h.c.internal.RegionFactoryInitiator - [no-trace] HHH000026: Second-level cache disabled
+2025-11-16 23:08:30.136 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - [no-trace] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-16 23:08:30.170 [main] INFO  com.zaxxer.hikari.HikariDataSource - [no-trace] HikariPool-1 - Starting...
+2025-11-16 23:08:31.202 [main] WARN  o.h.engine.jdbc.spi.SqlExceptionHelper - [no-trace] SQL Error: 0, SQLState: null
+2025-11-16 23:08:31.203 [main] ERROR o.h.engine.jdbc.spi.SqlExceptionHelper - [no-trace] path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist
+2025-11-16 23:08:31.206 [main] WARN  o.h.e.j.e.i.JdbcEnvironmentInitiator - [no-trace] HHH000342: Could not obtain connection to query metadata
+org.hibernate.exception.GenericJDBCException: unable to obtain isolated JDBC connection [path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist] [n/a]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:63)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:334)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:129)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:81)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:226)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:194)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1442)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1513)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.paofresquim.PaofresquimApplication.main(PaofresquimApplication.java:10)
+Caused by: java.sql.SQLException: path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist
+	at org.sqlite.SQLiteConnection.open(SQLiteConnection.java:261)
+	at org.sqlite.SQLiteConnection.<init>(SQLiteConnection.java:67)
+	at org.sqlite.jdbc3.JDBC3Connection.<init>(JDBC3Connection.java:28)
+	at org.sqlite.jdbc4.JDBC4Connection.<init>(JDBC4Connection.java:19)
+	at org.sqlite.JDBC.createConnection(JDBC.java:106)
+	at org.sqlite.JDBC.connect(JDBC.java:79)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:127)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:126)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:485)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
+	... 35 common frames omitted
+2025-11-16 23:08:31.265 [main] INFO  org.hibernate.orm.connections.pooling - [no-trace] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (null)']
+	Database driver: undefined/unknown
+	Database version: 2.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-16 23:08:32.099 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - [no-trace] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-16 23:08:32.128 [main] INFO  com.zaxxer.hikari.HikariDataSource - [no-trace] HikariPool-1 - Starting...
+2025-11-16 23:08:33.131 [main] WARN  o.h.engine.jdbc.spi.SqlExceptionHelper - [no-trace] SQL Error: 0, SQLState: null
+2025-11-16 23:08:33.132 [main] ERROR o.h.engine.jdbc.spi.SqlExceptionHelper - [no-trace] path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist
+2025-11-16 23:08:33.141 [main] ERROR o.s.o.j.LocalContainerEntityManagerFactoryBean - [no-trace] Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist] [n/a]
+2025-11-16 23:08:33.143 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - [no-trace] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist] [n/a]
+2025-11-16 23:08:33.151 [main] INFO  o.apache.catalina.core.StandardService - [no-trace] Stopping service [Tomcat]
+2025-11-16 23:08:33.175 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - [no-trace] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-16 23:08:33.200 [main] ERROR o.springframework.boot.SpringApplication - [no-trace] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist] [n/a]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.paofresquim.PaofresquimApplication.main(PaofresquimApplication.java:10)
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist] [n/a]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:431)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822)
+	... 15 common frames omitted
+Caused by: org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist] [n/a]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:63)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:74)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcDatabaseMetaData(ImprovedExtractionContextImpl.java:70)
+	at org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl.processTableResultSet(InformationExtractorJdbcDatabaseMetaDataImpl.java:65)
+	at org.hibernate.tool.schema.extract.internal.AbstractInformationExtractorImpl.getTables(AbstractInformationExtractorImpl.java:570)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.getTablesInformation(DatabaseInformationImpl.java:122)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:72)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:233)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	... 19 common frames omitted
+Caused by: java.sql.SQLException: path to 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM\backend\paofresquim\src\main\resources\database\paofresquim.db': 'C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\Pao-FresQUIM' does not exist
+	at org.sqlite.SQLiteConnection.open(SQLiteConnection.java:261)
+	at org.sqlite.SQLiteConnection.<init>(SQLiteConnection.java:67)
+	at org.sqlite.jdbc3.JDBC3Connection.<init>(JDBC3Connection.java:28)
+	at org.sqlite.jdbc4.JDBC4Connection.<init>(JDBC4Connection.java:19)
+	at org.sqlite.JDBC.createConnection(JDBC.java:106)
+	at org.sqlite.JDBC.connect(JDBC.java:79)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:127)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:126)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:485)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46)
+	... 40 common frames omitted
+2025-11-16 23:09:37.026 [main] INFO  com.paofresquim.PaofresquimApplication - [no-trace] Starting PaofresquimApplication using Java 25.0.1 with PID 13096 (C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM\backend\paofresquim\target\classes started by koi in C:\Users\koi\Projeto_Sistemas\Pao-FresQUIM)
+2025-11-16 23:09:37.030 [main] INFO  com.paofresquim.PaofresquimApplication - [no-trace] No active profile set, falling back to 1 default profile: "default"
+2025-11-16 23:09:37.769 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - [no-trace] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-16 23:09:37.852 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - [no-trace] Finished Spring Data repository scanning in 70 ms. Found 7 JPA repository interfaces.
+2025-11-16 23:09:38.304 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - [no-trace] Tomcat initialized with port 8080 (http)
+2025-11-16 23:09:38.320 [main] INFO  o.apache.catalina.core.StandardService - [no-trace] Starting service [Tomcat]
+2025-11-16 23:09:38.321 [main] INFO  org.apache.catalina.core.StandardEngine - [no-trace] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-16 23:09:38.383 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - [no-trace] Initializing Spring embedded WebApplicationContext
+2025-11-16 23:09:38.384 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - [no-trace] Root WebApplicationContext: initialization completed in 1305 ms
+2025-11-16 23:09:38.554 [main] INFO  o.hibernate.jpa.internal.util.LogHelper - [no-trace] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-16 23:09:38.607 [main] INFO  org.hibernate.Version - [no-trace] HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-16 23:09:38.641 [main] INFO  o.h.c.internal.RegionFactoryInitiator - [no-trace] HHH000026: Second-level cache disabled
+2025-11-16 23:09:38.911 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - [no-trace] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-16 23:09:38.942 [main] INFO  com.zaxxer.hikari.HikariDataSource - [no-trace] HikariPool-1 - Starting...
+2025-11-16 23:09:39.239 [main] INFO  com.zaxxer.hikari.pool.HikariPool - [no-trace] HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@12cd129c
+2025-11-16 23:09:39.241 [main] INFO  com.zaxxer.hikari.HikariDataSource - [no-trace] HikariPool-1 - Start completed.
+2025-11-16 23:09:39.293 [main] INFO  org.hibernate.orm.connections.pooling - [no-trace] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 3.45.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-16 23:09:40.166 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - [no-trace] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-16 23:09:40.255 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - [no-trace] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-16 23:09:40.635 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - [no-trace] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-16 23:09:41.252 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - [no-trace] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-16 23:09:41.579 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - [no-trace] Tomcat started on port 8080 (http) with context path '/'
+2025-11-16 23:09:41.588 [main] INFO  com.paofresquim.PaofresquimApplication - [no-trace] Started PaofresquimApplication in 5.166 seconds (process running for 5.5)
+2025-11-16 23:09:41.603 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] === INICIANDO CARGA DE DADOS INICIAIS ===
+2025-11-16 23:09:41.612 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela clientes: 10 registros
+2025-11-16 23:09:41.614 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela produtos: 15 registros
+2025-11-16 23:09:41.615 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela estoque_ingredientes: 15 registros
+2025-11-16 23:09:41.616 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela funcionarios: 8 registros
+2025-11-16 23:09:41.616 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela vendas: 20 registros
+2025-11-16 23:09:41.617 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] Tabela expediente_funcionario: 40 registros
+2025-11-16 23:09:41.629 [main] WARN  com.paofresquim.config.DataLoader - [no-trace] Tabela ferias_funcionario não encontrada ou vazia: StatementCallback; uncategorized SQLException for SQL [SELECT COUNT(*) FROM ferias_funcionario]; SQL state [null]; error code [1]; [SQLITE_ERROR] SQL error or missing database (no such table: ferias_funcionario)
+2025-11-16 23:09:41.630 [main] ERROR com.paofresquim.config.DataLoader - [no-trace] Arquivo CSV não encontrado: database/seeding-csv/ferias_funcionario.csv
+2025-11-16 23:09:41.631 [main] INFO  com.paofresquim.config.DataLoader - [no-trace] === CARGA DE DADOS CONCLUÍDA COM SUCESSO ===
+2025-11-16 23:10:01.506 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - [no-trace] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-16 23:10:01.507 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - [no-trace] Initializing Servlet 'dispatcherServlet'
+2025-11-16 23:10:01.511 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - [no-trace] Completed initialization in 2 ms
