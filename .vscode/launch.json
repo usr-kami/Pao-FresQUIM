@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PaofresquimApplication",
+            "request": "launch",
+            "mainClass": "com.paofresquim.PaofresquimApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-PaofresquimApplication<paofresquim>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
