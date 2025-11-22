@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pão FresQUIM - ERP Padaria</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🍞 Pão FresQUIM</h2>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#" class="menu-item active" data-section="dashboard">📊 Dashboard</a></li>
+                    <li><a href="#" class="menu-item" data-section="clientes">👥 Clientes</a></li>
+                    <li><a href="#" class="menu-item" data-section="produtos">🥖 Produtos</a></li>
+                    <li><a href="#" class="menu-item" data-section="estoque">📦 Estoque</a></li>
+                    <li><a href="#" class="menu-item" data-section="vendas">💰 Vendas</a></li>
+                    <li><a href="#" class="menu-item" data-section="funcionarios">👨‍💼 Funcionários</a></li>
+                    <li><a href="#" class="menu-item" data-section="cftv">📷 CFTV</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="header-actions">
+                    <span id="current-date"></span>
+                </div>
+            </header>
+
+            <div class="content">
+                <section id="dashboard" class="section active">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">💰</div>
+                            <div class="metric-info">
+                                <h3>Vendas Hoje</h3>
+                                <p id="vendas-hoje" class="metric-value">R$ 0,00</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📈</div>
+                            <div class="metric-info">
+                                <h3>Vendas Mês</h3>
+                                <p id="vendas-mes" class="metric-value">R$ 0,00</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">👥</div>
+                            <div class="metric-info">
+                                <h3>Clientes Ativos</h3>
+                                <p id="total-clientes" class="metric-value">0</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">⚠️</div>
+                            <div class="metric-info">
+                                <h3>Alertas Estoque</h3>
+                                <p id="alertas-estoque" class="metric-value">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <h3>Produtos Mais Vendidos</h3>
+                            <div id="produtos-mais-vendidos" class="chart-content">
+                                <div class="loading">Carregando dados...</div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Clientes Inadimplentes</h3>
+                            <div id="top-clientes-inadimplentes" class="chart-content">
+                                <div class="loading">Carregando dados...</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="clientes" class="section">
+                    <div class="section-header">
+                        <h2>Gestão de Clientes</h2>
+                        <button class="btn-primary" onclick="abrirModalCliente()">+ Novo Cliente</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="tabela-clientes">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Telefone</th>
+                                    <th>Data Cadastro</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clientes-body">
+                                <tr>
+                                    <td colspan="6" class="loading">Carregando clientes...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="produtos" class="section">
+                    <div class="section-header">
+                        <h2>Gestão de Produtos</h2>
+                        <button class="btn-primary" onclick="abrirModalProduto()">+ Novo Produto</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="tabela-produtos">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Preço por KG</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="produtos-body">
+                                <tr>
+                                    <td colspan="4" class="loading">Carregando produtos...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="estoque" class="section">
+                    <div class="section-header">
+                        <h2>Estoque de Ingredientes</h2>
+                        <button class="btn-primary" onclick="abrirModalIngrediente()">+ Novo Ingrediente</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="tabela-estoque">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                    <th>Unidade</th>
+                                    <th>Estoque Mínimo</th>
+                                    <th>Custo Médio</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="estoque-body">
+                                <tr>
+                                    <td colspan="8" class="loading">Carregando estoque...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="vendas" class="section">
+                    <div class="section-header">
+                        <h2>Gestão de Vendas</h2>
+                        <button class="btn-primary" onclick="abrirModalVenda()">+ Nova Venda</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="tabela-vendas">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Produto</th>
+                                    <th>Peso Vendido</th>
+                                    <th>Preço/KG</th>
+                                    <th>Total</th>
+                                    <th>Forma Pagamento</th>
+                                    <th>Status Pagamento</th>
+                                    <th>Data</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vendas-body">
+                                <tr>
+                                    <td colspan="10" class="loading">Carregando vendas...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="funcionarios" class="section">
+                    <div class="section-header">
+                        <h2>Gestão de Funcionários</h2>
+                        <button class="btn-primary" onclick="abrirModalFuncionario()">+ Novo Funcionário</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="tabela-funcionarios">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Cargo</th>
+                                    <th>Salário Base</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="funcionarios-body">
+                                <tr>
+                                    <td colspan="7" class="loading">Carregando funcionários...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="cftv" class="section">
+                    <div class="section-header">
+                        <h2>Sistema de CFTV</h2>
+                    </div>
+
+                    <div class="cftv-grid" id="cftv-grid">
+                        <div class="loading">Carregando câmeras...</div>
+                    </div>
+
+                    <div class="cftv-status">
+                        <div class="status-info">
+                            <span class="status-label">Status do Sistema:</span>
+                            <span class="status-value online" id="cftv-status">Online</span>
+                        </div>
+                        <div class="status-info">
+                            <span class="status-label">Última Atualização:</span>
+                            <span class="status-value" id="last-update">-</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Modal</h3>
+                <span class="close" onclick="fecharModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
