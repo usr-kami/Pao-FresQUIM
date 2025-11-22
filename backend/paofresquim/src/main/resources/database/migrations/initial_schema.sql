@@ -6,9 +6,9 @@
 .read constraints/fk_vendas_produtos.sql
 .read schemas/funcionarios.sql
 .read schemas/ferias_funcionarios.sql
-.read schemas/expediente_funcionario.sql
+.read schemas/expediente_funcionarios.sql
 .read constraints/fk_ferias_funcionarios.sql
-.read constraints/fk_expediente_funcionario.sql
+.read constraints/fk_expediente_funcionarios.sql
 
 .mode csv
 .import seeding-csv/clientes.csv clientes
@@ -17,4 +17,4 @@
 .import seeding-csv/vendas.csv vendas
 .import seeding-csv/funcionarios.csv funcionarios
 .import seeding-csv/ferias_funcionarios.csv ferias_funcionarios
-.import seeding-csv/expediente_funcionario.csv expediente_funcionario
+.import seeding-csv/expediente_funcionarios.csv expediente_funcionarios

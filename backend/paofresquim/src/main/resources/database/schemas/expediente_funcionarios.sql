@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS expediente_funcionario (
+CREATE TABLE IF NOT EXISTS expediente_funcionarios (
     id_expediente INTEGER PRIMARY KEY AUTOINCREMENT,
     id_funcionario INTEGER NOT NULL,
     dia_semana TEXT CHECK(dia_semana IN ('segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo')),

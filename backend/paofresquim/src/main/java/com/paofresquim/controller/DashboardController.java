@@ -23,7 +23,7 @@ public class DashboardController {
     private DashboardService dashboardService;
 
     @GetMapping
-    public ResponseEntity<DashboardResponseDTO> obterDashboard() {
+    public ResponseEntity<?> obterDashboard() {
         String traceId = UUID.randomUUID().toString().substring(0, 8);
         MDC.put("traceId", traceId);
         
@@ -32,13 +32,16 @@ public class DashboardController {
             DashboardResponseDTO dashboard = dashboardService.obterDashboard();
             logger.info("Dashboard gerado com sucesso");
             return ResponseEntity.ok(dashboard);
+        } catch (Exception e) {
+            logger.error("Erro ao obter dashboard: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError().body("Erro interno ao gerar dashboard: " + e.getMessage());
         } finally {
             MDC.clear();
         }
     }
 
     @GetMapping("/vendas-hoje")
-    public ResponseEntity<Double> obterVendasHoje() {
+    public ResponseEntity<?> obterVendasHoje() {
         String traceId = UUID.randomUUID().toString().substring(0, 8);
         MDC.put("traceId", traceId);
         
@@ -48,13 +51,16 @@ public class DashboardController {
             Double vendasHoje = dashboard.metricasVendas().vendasHoje();
             logger.info("Vendas de hoje: R$ {}", vendasHoje);
             return ResponseEntity.ok(vendasHoje);
+        } catch (Exception e) {
+            logger.error("Erro ao obter vendas de hoje: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError().body("Erro ao calcular vendas de hoje: " + e.getMessage());
         } finally {
             MDC.clear();
         }
     }
 
     @GetMapping("/vendas-mes")
-    public ResponseEntity<Double> obterVendasMes() {
+    public ResponseEntity<?> obterVendasMes() {
         String traceId = UUID.randomUUID().toString().substring(0, 8);
         MDC.put("traceId", traceId);
         
@@ -64,6 +70,9 @@ public class DashboardController {
             Double vendasMes = dashboard.metricasVendas().vendasMes();
             logger.info("Vendas do mês: R$ {}", vendasMes);
             return ResponseEntity.ok(vendasMes);
+        } catch (Exception e) {
+            logger.error("Erro ao obter vendas do mês: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError().body("Erro ao calcular vendas do mês: " + e.getMessage());
         } finally {
             MDC.clear();
         }
@@ -79,6 +88,9 @@ public class DashboardController {
             DashboardResponseDTO dashboard = dashboardService.obterDashboard();
             logger.info("Encontrados {} produtos mais vendidos", dashboard.produtosMaisVendidos().size());
             return ResponseEntity.ok(dashboard.produtosMaisVendidos());
+        } catch (Exception e) {
+            logger.error("Erro ao obter produtos mais vendidos: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError().body("Erro ao buscar produtos mais vendidos: " + e.getMessage());
         } finally {
             MDC.clear();
         }
@@ -94,6 +106,9 @@ public class DashboardController {
             DashboardResponseDTO dashboard = dashboardService.obterDashboard();
             logger.info("Encontrados {} clientes top", dashboard.clientesTop().size());
             return ResponseEntity.ok(dashboard.clientesTop());
+        } catch (Exception e) {
+            logger.error("Erro ao obter clientes top: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError().body("Erro ao buscar clientes top: " + e.getMessage());
         } finally {
             MDC.clear();
         }
@@ -108,6 +123,9 @@ public class DashboardController {
             logger.info("Buscando métricas de funcionários");
             DashboardResponseDTO dashboard = dashboardService.obterDashboard();
             return ResponseEntity.ok(dashboard.metricasFuncionarios());
+        } catch (Exception e) {
+            logger.error("Erro ao obter métricas de funcionários: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError().body("Erro ao buscar métricas de funcionários: " + e.getMessage());
         } finally {
             MDC.clear();
         }
@@ -123,6 +141,9 @@ public class DashboardController {
             DashboardResponseDTO dashboard = dashboardService.obterDashboard();
             logger.info("Encontrados {} alertas de estoque", dashboard.alertasEstoque().ingredientesParaRepor());
             return ResponseEntity.ok(dashboard.alertasEstoque());
+        } catch (Exception e) {
+            logger.error("Erro ao obter alertas de estoque: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError().body("Erro ao buscar alertas de estoque: " + e.getMessage());
         } finally {
             MDC.clear();
         }

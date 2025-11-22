@@ -48,18 +48,18 @@ public class DataLoader implements CommandLineRunner {
                 loadCsvData("vendas", "database/seeding-csv/vendas.csv");
             }
             
-            if (isTableEmpty("expediente_funcionario")) {
-                loadCsvData("expediente_funcionario", "database/seeding-csv/expediente_funcionario.csv");
+            if (isTableEmpty("expediente_funcionarios")) {
+                loadCsvData("expediente_funcionarios", "database/seeding-csv/expediente_funcionarios.csv");
             }
             
-            if (isTableEmpty("ferias_funcionario")) {
-                loadCsvData("ferias_funcionario", "database/seeding-csv/ferias_funcionario.csv");
+            if (isTableEmpty("ferias_funcionarios")) {
+                loadCsvData("ferias_funcionarios", "database/seeding-csv/ferias_funcionarios.csv");
             }
             
             logger.info("=== CARGA DE DADOS CONCLUÍDA COM SUCESSO ===");
             
         } catch (Exception e) {
-            logger.error("❌ ERRO CRÍTICO DURANTE CARGA DE DADOS: {}", e.getMessage(), e);
+            logger.error("ERRO CRÍTICO DURANTE CARGA DE DADOS: {}", e.getMessage(), e);
             throw new RuntimeException("Falha na carga inicial de dados. Rollback realizado.", e);
         }
     }
@@ -103,10 +103,10 @@ public class DataLoader implements CommandLineRunner {
                     }
                 }
                 
-                logger.info("✅ {}: {} registros carregados", tableName, loadedCount);
+                logger.info("{}: {} registros carregados", tableName, loadedCount);
             }
         } catch (Exception e) {
-            logger.error("❌ Erro ao carregar CSV {}: {}", csvPath, e.getMessage());
+            logger.error("Erro ao carregar CSV {}: {}", csvPath, e.getMessage());
             throw new RuntimeException("Falha ao carregar dados da tabela: " + tableName, e);
         }
     }
@@ -145,12 +145,12 @@ public class DataLoader implements CommandLineRunner {
                         values[6], values[7], values[8],
                         values.length > 9 && !values[9].isEmpty() ? values[9] : null);
                     break;
-                case "expediente_funcionario":
-                    jdbcTemplate.update("INSERT INTO expediente_funcionario (id_expediente, id_funcionario, dia_semana, hora_entrada, hora_saida, turno) VALUES (?, ?, ?, ?, ?, ?)",
+                case "expediente_funcionarios":
+                    jdbcTemplate.update("INSERT INTO expediente_funcionarios (id_expediente, id_funcionario, dia_semana, hora_entrada, hora_saida, turno) VALUES (?, ?, ?, ?, ?, ?)",
                         Long.parseLong(values[0]), Long.parseLong(values[1]), values[2], values[3], values[4], values[5]);
                     break;
-                case "ferias_funcionario":
-                    jdbcTemplate.update("INSERT INTO ferias_funcionario (id_ferias, id_funcionario, data_inicio, data_fim, dias_solicitados, status, data_solicitacao, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                case "ferias_funcionarios":
+                    jdbcTemplate.update("INSERT INTO ferias_funcionarios (id_ferias, id_funcionario, data_inicio, data_fim, dias_solicitados, status, data_solicitacao, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                         Long.parseLong(values[0]), Long.parseLong(values[1]), values[2], values[3],
                         Integer.parseInt(values[4]), values[5], values[6],
                         values.length > 7 ? values[7] : null);
