@@ -8,8 +8,9 @@ O projeto **Pao-FresQUIM** é uma aplicação para gestão de padaria, composta 
 ## Tecnologias Utilizadas
 
 **Backend:**
-- Java 25+ (Spring Boot)
-- Maven
+- Java 25
+- Spring Boot 3.5.7
+- Maven 4
 - JPA/Hibernate
 - SQLite (banco de dados local, via JDBC)
 - Estrutura modular: controllers, services, DTOs, entidades, repositórios
